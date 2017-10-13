@@ -17,11 +17,75 @@ const lib = require('lib')({token: process.env.STDLIB_TOKEN});
 * @returns {object}
 */
 module.exports = (user, channel, text = '', command = {}, botToken = null, callback) => {
+  var team = {
+    dennis: 'U0545PDQ3',
+    rodrigo: 'U0DU10LAU',
+    roger: 'U75RRPETH',
+    alejandro: 'U0408Q8R0',
+    amec: 'U707X17U3',
+    emily: 'U6XAQ854Y'
+  };
 
-  if(channel == 'G76SVCPEV'){
+  var servers = {
+    dennis: {
+      ip: '192.168.19.171',
+    },
+    rodrigo: {
+      ip: '192.168.19.167',
+    },
+    roger: {
+      ip: '192.168.19.165',
+    },
+    alejandro: {
+      ip: '192.168.19.164',
+    },
+    amec: {
+      ip: '192.168.19.166',
+    },
+    emily: {
+      ip: '192.168.19.168',
+    }
+  }
+  if(Object.values(team).indexOf(user) > -1){
     callback(null, {
       response_type: 'ephemeral',
-      text: `Hello, ${user} ...\nYou said: ${text}?`
+      "text": "Would you like to play a game?",
+      "attachments": [
+          {
+              "text": "Choose a game to play",
+              "fallback": "You are unable to choose a game",
+              "callback_id": "wopr_game",
+              "color": "#3AA3E3",
+              "attachment_type": "default",
+              "actions": [
+                  {
+                      "name": "game",
+                      "text": "Chess",
+                      "type": "button",
+                      "value": "chess"
+                  },
+                  {
+                      "name": "game",
+                      "text": "Falken's Maze",
+                      "type": "button",
+                      "value": "maze"
+                  },
+                  {
+                      "name": "game",
+                      "text": "Thermonuclear War",
+                      "style": "danger",
+                      "type": "button",
+                      "value": "war",
+                      "confirm": {
+                          "title": "Are you sure?",
+                          "text": "Wouldn't you prefer a good game of chess?",
+                          "ok_text": "Yes",
+                          "dismiss_text": "No"
+                      }
+                  }
+              ]
+          }
+      ]
     });
   }else{
     callback(null, {
