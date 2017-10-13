@@ -17,7 +17,7 @@ const lib = require('lib')({token: process.env.STDLIB_TOKEN});
 * @returns {object}
 */
 module.exports = (user, channel, text = '', command = {}, botToken = null, callback) => {
-
+  text = text.toLowerCase();
   var team = {
     dennis: 'U0545PDQ3',
     rodrigo: 'U0DU10LAU',
