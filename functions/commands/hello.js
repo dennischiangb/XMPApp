@@ -21,7 +21,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
   if(channel == 'G76SVCPEV'){
     callback(null, {
       response_type: 'in_channel',
-      text: `Hello, <@${user}>...\nYou said: ${text}`
+      text: `Hello, <@${user}>...\nYou said: ${text}?`
     });
   }else{
     callback(null, {
@@ -29,6 +29,6 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       text: `Sorry, this command is exclusive to the XMPie team.`
     });
   }
-  
+
 
 };
