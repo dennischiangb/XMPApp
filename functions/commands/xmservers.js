@@ -71,7 +71,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                 value: 'RainbowTrout330',
                 short: true
               }
-            [
+            ]
           },
         ]
       });
