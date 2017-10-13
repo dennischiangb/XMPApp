@@ -51,20 +51,6 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       response_type: 'ephemeral',
       "attachments": [
         {
-            /**"fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "pretext": "I got you, fam",
-            "author_name": "XMPie Trello",
-            "author_link": "http://flickr.com/bobby/",
-            "author_icon": "https://i.imgur.com/SaV1D9j.png",
-            "title": "XMPie Support",
-            "title_link": "https://trello.com/b/VNOC5stG/xmpie-support",
-            "text": "General XMPie Help",
-            "image_url": "http://my-website.com/path/to/image.jpg",
-            "thumb_url": "http://example.com/path/to/thumb.png",
-            "footer": "XMPie",
-            "footer_icon": "https://i.imgur.com/SaV1D9j.png",
-            "ts": 123456789*/
             "fallback": "ReferenceError - UI is not defined: https://honeybadger.io/path/to/event/",
             "text": "I got you, fam",
             "footer": "XMPie",

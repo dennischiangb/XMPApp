@@ -54,12 +54,12 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         {
             "text": "Choose a game to play",
             "fallback": "You are unable to choose a game",
-            "callback_id": "chess",
+            "callback_id": "wopr_game",
             "color": "#3AA3E3",
             "attachment_type": "default",
             "actions": [
                 {
-                    "name": "chess",
+                    "name": "game",
                     "text": "Chess",
                     "type": "button",
                     "value": "chess"
