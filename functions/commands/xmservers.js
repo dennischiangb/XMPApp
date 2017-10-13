@@ -65,7 +65,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                 title: 'User',
                 value: 'xmpieadmin',
                 short: true
-              }
+              },
               {
                 title: 'Password',
                 value: 'RainbowTrout330',
