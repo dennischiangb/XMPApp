@@ -25,7 +25,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         {
             "fallback": "Required plain-text summary of the attachment.",
             "color": "#36a64f",
-            "pretext": "Optional text that appears above the attachment block",
+            "pretext": "I got you, fam",
             "author_name": "XMPie Trello",
             "author_link": "http://flickr.com/bobby/",
             "author_icon": "https://i.imgur.com/SaV1D9j.png",
