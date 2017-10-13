@@ -58,7 +58,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           {
             fallback: `Hey <@${user}>, good luck`,
             title: servers[text].ip,
-            text: 'Login:'
+            text: 'Login:',
             color: "#6f6a9d",
             fields: [
               {
