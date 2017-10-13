@@ -17,8 +17,36 @@ const lib = require('lib')({token: process.env.STDLIB_TOKEN});
 * @returns {object}
 */
 module.exports = (user, channel, text = '', command = {}, botToken = null, callback) => {
+  var team = {
+    dennis: 'U0545PDQ3',
+    rodrigo: 'U0DU10LAU',
+    roger: 'U75RRPETH',
+    alejandro: 'U0408Q8R0',
+    amec: 'U707X17U3',
+    emily: 'U6XAQ854Y'
+  };
 
-  if(channel == 'G76SVCPEV'){
+  var servers = {
+    dennis: {
+      ip: '192.168.19.171',
+    },
+    rodrigo: {
+      ip: '192.168.19.167',
+    },
+    roger: {
+      ip: '192.168.19.165',
+    },
+    alejandro: {
+      ip: '192.168.19.164',
+    },
+    amec: {
+      ip: '192.168.19.166',
+    },
+    emily: {
+      ip: '192.168.19.168',
+    }
+  }
+  if(Object.values(team).indexOf(user) > -1){
     callback(null, {
       response_type: 'ephemeral',
       "attachments": [
@@ -40,7 +68,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
             "fallback": "ReferenceError - UI is not defined: https://honeybadger.io/path/to/event/",
             "text": "I got you, fam",
             "footer": "XMPie",
-            "ts": Date.time(),
+            "ts": Date.now()/1000|0,
             "footer_icon": "https://i.imgur.com/SaV1D9j.png",
             "fields": [
                 {
