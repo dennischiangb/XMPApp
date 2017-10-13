@@ -39,6 +39,9 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
             "ts": 123456789*/
             "fallback": "ReferenceError - UI is not defined: https://honeybadger.io/path/to/event/",
             "text": "I got you, fam",
+            "footer": "XMPie",
+            "ts": Date.time(),
+            "footer_icon": "https://i.imgur.com/SaV1D9j.png",
             "fields": [
                 {
                     "title": "XMPie Support",
@@ -52,6 +55,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                 }
             ],
             "color": "#008000"
+            
         }
     ]});
   }else{
