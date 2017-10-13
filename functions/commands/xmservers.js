@@ -38,7 +38,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       ip: '192.168.19.165',
     },
     alejandro: {
-      ip: '192.6-168.19.164',
+      ip: '192.168.19.164',
     },
     amec: {
       ip: '192.168.19.166',
