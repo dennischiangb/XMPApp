@@ -30,7 +30,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
 
   if(Object.values(team).indexOf(user) > -1){
 
-    if(!team[text]) {
+    if(team[text]) {
       callback(null, {
         response_type: 'ephemeral',
         text: `Hey <@${user}> here is the info for ${text}'s sever:`
