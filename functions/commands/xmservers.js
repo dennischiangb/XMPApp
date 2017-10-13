@@ -25,15 +25,55 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
     alejandro: 'U0408Q8R0',
     amec: 'U707X17U3',
     emily: 'U6XAQ854Y'
-  }
+  };
 
+  var servers = {
+    dennis: {
+      ip: '192.168.19.171',
+    },
+    rodrigo: {
+      ip: '192.168.19.167',
+    },
+    roger: {
+      ip: '192.168.19.165',
+    },
+    alejandro: {
+      ip: '192.6-168.19.164',
+    },
+    amec: {
+      ip: '192.168.19.166',
+    },
+    emily: {
+      ip: '192.168.19.168',
+    }
+  }
 
   if(Object.values(team).indexOf(user) > -1){
 
     if(team[text]) {
       callback(null, {
         response_type: 'ephemeral',
-        text: `Hey <@${user}> here is the info for ${text}'s sever:`
+        text: `Hey <@${user}> here is the info for ${text}'s sever:`,
+        attachments: [
+          {
+            fallback: `Hey <@${user}>, good luck`,
+            title: servers[text].ip,
+            text: 'Login:'
+            color: "#6f6a9d",
+            fields: [
+              {
+                title: 'User',
+                value: 'xmpieadmin',
+                short: true
+              }
+              {
+                title: 'Password',
+                value: 'RainbowTrout330',
+                short: true
+              }
+            [
+          },
+        ]
       });
     } else {
       callback(null, {
