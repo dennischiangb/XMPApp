@@ -19,7 +19,7 @@ const update = require('../../utils/update_message.js');
  */
 module.exports = (context, callback) => {
 
-  callback(null, {
+  return callback(null, {
     response_type: 'ephemeral',
     text: `Ola ke ase`,
   });
