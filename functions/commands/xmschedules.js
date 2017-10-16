@@ -48,70 +48,61 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
   }
 
   if(Object.values(team).indexOf(user) > -1){
-
-    if(team[text]) {
-      callback(null, {
-        "text": "Would you like to play a game?",
-        "response_type": "in_channel",
-        "attachments": [
-            {
-                "text": "Choose a game to play",
-                "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
-                "color": "#3AA3E3",
-                "attachment_type": "default",
-                "callback_id": "game_selection",
-                "actions": [
-                    {
-                        "name": "games_list",
-                        "text": "Pick a game...",
-                        "type": "select",
-                        "options": [
-                            {
-                                "text": "Hearts",
-                                "value": "hearts"
-                            },
-                            {
-                                "text": "Bridge",
-                                "value": "bridge"
-                            },
-                            {
-                                "text": "Checkers",
-                                "value": "checkers"
-                            },
-                            {
-                                "text": "Chess",
-                                "value": "chess"
-                            },
-                            {
-                                "text": "Poker",
-                                "value": "poker"
-                            },
-                            {
-                                "text": "Falken's Maze",
-                                "value": "maze"
-                            },
-                            {
-                                "text": "Global Thermonuclear War",
-                                "value": "war"
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]});
-    } else {
-      callback(null, {
-        response_type: 'ephemeral',
-        text: `Sorry <@${user}> I don't know about the ${text} sever`
-      });
-    }
-  } else {
     callback(null, {
       response_type: 'ephemeral',
-      text: `Sorry, this command is exclusive to the XMPie team.`
+      "text": "Would you like to play a game?",
+      "attachments": [
+        {
+          "text": "Choose a game to play",
+          "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
+          "color": "#3AA3E3",
+          "attachment_type": "default",
+          "callback_id": "game_selection",
+          "actions": [
+              {
+                  "name": "games_list",
+                  "text": "Pick a game...",
+                  "type": "select",
+                  "options": [
+                      {
+                          "text": "Hearts",
+                          "value": "hearts",
+                      },
+                      {
+                          "text": "Bridge",
+                          "value": "bridge"
+                      },
+                      {
+                          "text": "Checkers",
+                          "value": "checkers"
+                      },
+                      {
+                          "text": "Chess",
+                          "value": "chess"
+                      },
+                      {
+                          "text": "Poker",
+                          "value": "poker"
+                      },
+                      {
+                          "text": "Falken's Maze",
+                          "value": "maze"
+                      },
+                      {
+                          "text": "Global Thermonuclear War",
+                          "value": "war"
+                      }
+                  ]
+              }
+          ]
+      }
+  ]});
+  }else{
+    callback(null, {
+      response_type: 'ephemeral',
+      text: `Sorry, this command is unsupported in this channel.`
     });
   }
-
 
 
 };

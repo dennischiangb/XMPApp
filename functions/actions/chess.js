@@ -22,6 +22,7 @@ module.exports = (user, channel, action = {}, botToken = null, callback) => {
   // convert them into strings.
   callback(null, {
     text: `Ola <@${user}> ke ase`,
+    response_type: 'in_channel'
   });
 
 };
