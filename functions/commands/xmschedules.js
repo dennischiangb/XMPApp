@@ -66,9 +66,9 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
        ]
      }]
     }, (err, result) => {
-      callback(err, {
+      callback(null, {
         response_type: 'ephemeral',
-        text: ".error loco",
+        text: channel,
       });
     });
 
