@@ -52,8 +52,8 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
     const slack = require('slack');
 
     slack.chat.postMessage({
-     token: process.env.BOT_TOKEN,
-     channel: '#general',
+     token: process.env.SLACK_VERIFICATION_TOKEN,
+     channel: channel,
      text: 'Respond to this',
      attachments: [{
        text: 'Here is the action:',
