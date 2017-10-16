@@ -77,6 +77,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                           "value": "checkers"
                       },
                       {
+                          "name": "chess",
                           "text": "Chess",
                           "value": "chess"
                       },
