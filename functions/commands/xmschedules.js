@@ -55,7 +55,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
      token: botToken,
      channel: "channel",
      text: 'Respond to this',
-     response_type: "ephemeral", 
+     response_type: "ephemeral",
      attachments: [{
        text: 'Here is the action:',
        actions: [
@@ -67,7 +67,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
        ]
      }]
     }, (err, result) => {
-      callback(null {
+      callback(null, {
         response_type: 'ephemeral',
         text: botToken,
       });
