@@ -52,7 +52,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
     const slack = require('slack');
 
     slack.chat.postMessage({
-     token: process.env.SLACK_VERIFICATION_TOKEN,
+     token: botToken,
      channel: channel,
      text: 'Respond to this',
      attachments: [{
@@ -68,7 +68,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
     }, (err, result) => {
       callback(null, {
         response_type: 'ephemeral',
-        text: botToken,
+        text: ".error loco",
       });
     });
 
