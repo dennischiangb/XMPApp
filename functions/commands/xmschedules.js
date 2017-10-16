@@ -51,13 +51,11 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
 
     const slack = require('slack');
 
-    slack.chat.postMessage({
+    slack.chat.postEphemeral({
      token: botToken,
      channel: channel,
-     response_type: "ephemeral",
      text: 'Respond to this',
      attachments: [{
-      response_type: "ephemeral",
        text: 'Here is the action:',
        actions: [
          {
