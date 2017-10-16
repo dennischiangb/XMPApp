@@ -55,9 +55,9 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
      token: botToken,
      channel: channel,
      text: 'Respond to this',
-     response_type: "ephemeral",
      attachments: [{
        text: 'Here is the action:',
+       response_type: "ephemeral",
        actions: [
          {
            name: 'example',
