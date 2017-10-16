@@ -67,7 +67,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
        ]
      }]
     }, (err, result) => {
-      callback(null, {
+      callback(err, {
         response_type: 'ephemeral',
         text: botToken,
       });
