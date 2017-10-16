@@ -22,6 +22,11 @@ module.exports = (context, callback) => {
   let params = context.params;
   let action;
 
+  callback(null, {
+    response_type: 'ephemeral',
+    text: `Ola ke ase`,
+  });
+  
   if (params.payload) {
     try {
       action = JSON.parse(params.payload);
