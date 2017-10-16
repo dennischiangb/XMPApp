@@ -48,56 +48,77 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
   }
 
   if(Object.values(team).indexOf(user) > -1){
-    callback(null, {
-      response_type: 'ephemeral',
-      "text": "Would you like to play a game?",
-      "attachments": [
-        {
-          "text": "Choose a game to play",
-          "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
-          "color": "#3AA3E3",
-          "attachment_type": "default",
-          "callback_id": "game_selection",
-          "actions": [
-              {
-                  "name": "games_list",
-                  "text": "Pick a game...",
-                  "type": "select",
-                  "options": [
-                      {
-                          "text": "Hearts",
-                          "value": "hearts"
-                      },
-                      {
-                          "text": "Bridge",
-                          "value": "bridge"
-                      },
-                      {
-                          "text": "Checkers",
-                          "value": "checkers"
-                      },
-                      {
-                          "name": "chess",
-                          "text": "Chess",
-                          "value": "chess"
-                      },
-                      {
-                          "text": "Poker",
-                          "value": "poker"
-                      },
-                      {
-                          "text": "Falken's Maze",
-                          "value": "maze"
-                      },
-                      {
-                          "text": "Global Thermonuclear War",
-                          "value": "war"
-                      }
-                  ]
-              }
-          ]
-      }
-  ]});
+
+    const slack = require('slack');
+
+    slack.chat.postMessage({
+     token: process.env.BOT_TOKEN,
+     channel: '#general',
+     text: 'Respond to this',
+     attachments: [{
+       text: 'Here is the action:',
+       actions: [
+         {
+           name: 'example',
+           text: 'Press me',
+           type: 'button'
+         }
+       ]
+     }]
+    }, (err, result) => {
+     // Handle result
+    });
+
+  //   callback(null, {
+  //     response_type: 'ephemeral',
+  //     "text": "Would you like to play a game?",
+  //     "attachments": [
+  //       {
+  //         "text": "Choose a game to play",
+  //         "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
+  //         "color": "#3AA3E3",
+  //         "attachment_type": "default",
+  //         "callback_id": "game_selection",
+  //         "actions": [
+  //             {
+  //                 "name": "games_list",
+  //                 "text": "Pick a game...",
+  //                 "type": "select",
+  //                 "options": [
+  //                     {
+  //                         "text": "Hearts",
+  //                         "value": "hearts"
+  //                     },
+  //                     {
+  //                         "text": "Bridge",
+  //                         "value": "bridge"
+  //                     },
+  //                     {
+  //                         "text": "Checkers",
+  //                         "value": "checkers"
+  //                     },
+  //                     {
+  //                         "name": "chess",
+  //                         "text": "Chess",
+  //                         "value": "chess"
+  //                     },
+  //                     {
+  //                         "text": "Poker",
+  //                         "value": "poker"
+  //                     },
+  //                     {
+  //                         "text": "Falken's Maze",
+  //                         "value": "maze"
+  //                     },
+  //                     {
+  //                         "text": "Global Thermonuclear War",
+  //                         "value": "war"
+  //                     }
+  //                 ]
+  //             }
+  //         ]
+  //     }
+  // ]});
   }else{
     callback(null, {
       response_type: 'ephemeral',
