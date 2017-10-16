@@ -54,10 +54,11 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
     slack.chat.postMessage({
      token: botToken,
      channel: channel,
+     response_type: "ephemeral",
      text: 'Respond to this',
      attachments: [{
+      response_type: "ephemeral",
        text: 'Here is the action:',
-       response_type: "ephemeral",
        actions: [
          {
            name: 'example',
