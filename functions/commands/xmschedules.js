@@ -66,7 +66,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                   "options": [
                       {
                           "text": "Hearts",
-                          "value": "hearts",
+                          "value": "hearts"
                       },
                       {
                           "text": "Bridge",
