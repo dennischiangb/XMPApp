@@ -46,12 +46,11 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       ip: '192.168.19.168',
     }
   }
+
   if(Object.values(team).indexOf(user) > -1){
-    callback(null, {
-      response_type: 'ephemeral',
-      "text": "Would you like to play a game?",
-    "attachments": [
-      {
+
+    if(team[text]) {
+      callback(null, {
         "text": "Would you like to play a game?",
         "response_type": "in_channel",
         "attachments": [
@@ -99,16 +98,20 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                     }
                 ]
             }
-        ]
+        ]});
+    } else {
+      callback(null, {
+        response_type: 'ephemeral',
+        text: `Sorry <@${user}> I don't know about the ${text} sever`
+      });
     }
-    ]
-    });
-  }else{
+  } else {
     callback(null, {
       response_type: 'ephemeral',
-      text: `Sorry, this command is unsupported in this channel.`
+      text: `Sorry, this command is exclusive to the XMPie team.`
     });
   }
+
 
 
 };
