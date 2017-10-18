@@ -55,52 +55,41 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       "attachments": [
         {
           "text": "Choose a game to play",
-          "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
+          "fallback": "You are unable to choose a game",
+          "callback_id": "wopr_game",
           "color": "#3AA3E3",
           "attachment_type": "default",
-          "callback_id": "game_selection",
           "actions": [
               {
-                  "name": "games_list",
-                  "text": "Pick a game...",
-                  "type": "select",
-                  "options": [
-                      {
-                          "text": "Hearts",
-                          "value": "hearts"
-                      },
-                      {
-                          "text": "Bridge",
-                          "value": "bridge"
-                      },
-                      {
-                          "text": "Checkers",
-                          "value": "checkers"
-                      },
-                      {
-                          "name": "chess",
-                          "text": "Chess",
-                          "value": "chess"
-                      },
-                      {
-                          "text": "Poker",
-                          "value": "poker"
-                      },
-                      {
-                          "text": "Falken's Maze",
-                          "value": "maze"
-                      },
-                      {
-                          "text": "Global Thermonuclear War",
-                          "value": "war"
-                      }
-                  ]
+                  "name": "game",
+                  "text": "Chess",
+                  "type": "button",
+                  "value": "chess"
+              },
+              {
+                  "name": "game",
+                  "text": "Falken's Maze",
+                  "type": "button",
+                  "value": "maze"
+              },
+              {
+                  "name": "game",
+                  "text": "Thermonuclear War",
+                  "style": "danger",
+                  "type": "button",
+                  "value": "war",
+                  "confirm": {
+                      "title": "Are you sure?",
+                      "text": "Wouldn't you prefer a good game of chess?",
+                      "ok_text": "Yes",
+                      "dismiss_text": "No"
+                  }
               }
           ]
       }
   ]});
   }else{
-    callback(null, {
+    callback(err, {
       response_type: 'ephemeral',
       text: `Sorry, this command is unsupported in this channel.`
     });
