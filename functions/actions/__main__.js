@@ -19,13 +19,13 @@ const update = require('../../utils/update_message.js');
  */
 module.exports = (context, callback) => {
 
-  return callback(null, {
-    response_type: 'ephemeral',
-    text: `Ola ke ase`,
-  });
+  // return callback(null, {
+  //   response_type: 'ephemeral',
+  //   text: `Ola ke ase`,
+  // });
 
-  let params = context.params;
-  let action;
+  // let params = context.params;
+  // let action;
   
   
   if (params.payload) {

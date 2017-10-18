@@ -61,7 +61,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           "attachment_type": "default",
           "actions": [
               {
-                  "name": chess.js,
+                  "name": "game",
                   "text": "Chess",
                   "type": "button",
                   "value": "chess"
@@ -80,7 +80,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                   "value": "war",
                   "confirm": {
                       "title": "Are you sure?",
-                      "text": "Google.com",
+                      "text": "Wouldn't you prefer a good game of chess?",
                       "ok_text": "Yes",
                       "dismiss_text": "No"
                   }
