@@ -46,32 +46,29 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       ip: '192.168.19.168',
     }
   }
-
   if(Object.values(team).indexOf(user) > -1){
-
     callback(null, {
-      response_type: 'ephemeral',
-      "text": "Would you like to play a game?",
+      response_type: 'in_channel',
       "attachments": [
         {
-          "text": "Choose a game to play",
-          "fallback": "You are unable to choose a game",
-          "callback_id": "wopr_game",
-          "color": "#3AA3E3",
-          "attachment_type": "default",
-          "actions": [
-              {
-                  "name": "game",
-                  "text": "Chess",
-                  "type": "button",
-                  "value": "chess"
-              }
-              
-          ]
-      }
-  ]});
+            "fallback": "ReferenceError - UI is not defined: https://honeybadger.io/path/to/event/",
+            "text": "I got you, fam",
+            "footer": "XMPie",
+            "ts": Date.now()/1000|0,
+            "footer_icon": "https://i.imgur.com/SaV1D9j.png",
+            "fields": [
+                {
+                    "title": "Rebecca",
+                    "value": "https://partnerhero.slack.com/archives/G76SVCPEV/p1508264429000005",
+                    "short": true
+                }
+            ],
+            "color": "#008000"
+            
+        }
+    ]});
   }else{
-    callback(err, {
+    callback(null, {
       response_type: 'ephemeral',
       text: `Sorry, this command is unsupported in this channel.`
     });
