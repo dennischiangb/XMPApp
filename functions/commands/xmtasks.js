@@ -48,7 +48,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
   }
   if(Object.values(team).indexOf(user) > -1){
     callback(null, {
-      response_type: 'in_channel',
+      response_type: 'ephemeral',
       "attachments": [
         {
             "fallback": "ReferenceError - UI is not defined: https://honeybadger.io/path/to/event/",
