@@ -61,7 +61,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
               "attachment_type": "default",
               "actions": [
                   {
-                      "name": "game",
+                      "name": "example",
                       "text": "Example",
                       "type": "button",
                       "value": "example"
