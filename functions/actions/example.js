@@ -22,6 +22,7 @@ module.exports = (user, channel, action = {}, botToken = null, callback) => {
   // convert them into strings.
   callback(null, {
     text: `Hello, <@${user}>!\nThis text will overwrite the original interactive message`,
+    replace_original: "true:",
     attachments: [{
       text: 'Try hitting this endpoint again by clicking the button!',
       fallback: 'Can\'t display attachment',

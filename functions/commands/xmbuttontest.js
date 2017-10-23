@@ -62,9 +62,9 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
               "actions": [
                   {
                       "name": "game",
-                      "text": "Chess",
+                      "text": "Example",
                       "type": "button",
-                      "value": "chess"
+                      "value": "example"
                   },
                   {
                       "name": "game",
