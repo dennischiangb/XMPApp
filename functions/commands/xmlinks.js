@@ -54,26 +54,26 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
             "fallback": "ReferenceError - UI is not defined: https://honeybadger.io/path/to/event/",
             "text": "I got you, fam",
             "footer": "XMPie",
-            "ts": "Date.now()/1000|0",
+            "ts": Date.now()/1000|0,
             "footer_icon": "https://i.imgur.com/SaV1D9j.png",
             "fields": [
                 {
-                    "title": "XMPie Support",
+                    "title": "XMPie Support (Trello)",
                     "value": "https://trello.com/b/VNOC5stG/xmpie-support",
                     "short": true
                 },
                 {
-                    "title": "Salesforce Cases",
+                    "title": "Salesforce Cases (Trello)",
                     "value": "https://trello.com/b/GDeLCYTO/salesforce-cases",
                     "short": true
                 },
                 {
-                    "title": "VIP Support Queue",
+                    "title": "VIP Support Queue (Salesforce)",
                     "value": "https://na29.salesforce.com/500?fcf=00B80000005gb7H",
                     "short": true
                 }
             ],
-            "color": "#008000"
+            "color": "#32CD32"
         }
     ]});
   }else{
