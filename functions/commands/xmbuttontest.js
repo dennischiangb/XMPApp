@@ -92,7 +92,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                       "name": "no",
                       "text": "No",
                       "type": "button",
-                      "value": "bad"
+                      "value": "example.js"
                   }
               ]
           }
