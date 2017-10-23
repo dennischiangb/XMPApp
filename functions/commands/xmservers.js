@@ -1,5 +1,16 @@
 const lib = require('lib')({token: process.env.STDLIB_TOKEN});
 
+const GoogleSpreadsheet = require('google-spreadsheet');
+const creds = require('../../sheetsAPI/client_secret.json');
+const team = {
+  dennis: 'U0545PDQ3',
+  rodrigo: 'U0DU10LAU',
+  roger: 'U75RRPETH',
+  alejandro: 'U0408Q8R0',
+  amec: 'U707X17U3',
+  emily: 'U6XAQ854Y'
+};
+
 /**
 * /hello
 *
@@ -17,76 +28,91 @@ const lib = require('lib')({token: process.env.STDLIB_TOKEN});
 * @returns {object}
 */
 module.exports = (user, channel, text = '', command = {}, botToken = null, callback) => {
-  text = text.toLowerCase();
-  var team = {
-    dennis: 'U0545PDQ3',
-    rodrigo: 'U0DU10LAU',
-    roger: 'U75RRPETH',
-    alejandro: 'U0408Q8R0',
-    amec: 'U707X17U3',
-    emily: 'U6XAQ854Y'
-  };
-
-  var servers = {
-    dennis: {
-      ip: '192.168.19.171',
-    },
-    rodrigo: {
-      ip: '192.168.19.167',
-    },
-    roger: {
-      ip: '192.168.19.165',
-    },
-    alejandro: {
-      ip: '192.168.19.164',
-    },
-    amec: {
-      ip: '192.168.19.166',
-    },
-    emily: {
-      ip: '192.168.19.168',
-    }
-  }
 
   if(Object.values(team).indexOf(user) > -1){
 
-    if(team[text]) {
-      callback(null, {
-        response_type: 'ephemeral',
-        text: `Hey <@${user}> here is the info for ${text}'s sever:`,
-        attachments: [
-          {
-            fallback: `Hey <@${user}>, good luck`,
-            title: servers[text].ip,
-            text: 'Login:',
-            color: "#6f6a9d",
-            fields: [
+    text = text.toLowerCase();
+
+    //using Google Sheets API to fetch data from spreadsheet
+    // Create a document object using the ID of the spreadsheet - obtained from its URL.
+    var doc = new GoogleSpreadsheet('1TORc-LBrt3_oe3mK3j-arickBm01UcqZHhoDBdqo3SU');
+
+    // Authenticate with the Google Spreadsheets API.
+    doc.useServiceAccountAuth(creds, function (err) {
+      // Get all of the cells from the spreadsheet.
+      doc.getCells(1, function (err, cells) {
+        //parse the info; see function definition for more
+        servers = getServersInfo(cells);
+        if(servers[text]) {
+          callback(null, {
+            response_type: 'ephemeral',
+            text: `Hey <@${user}> here is the info for the *${text}* sever:`,
+            attachments: [
               {
-                title: 'User',
-                value: 'xmpieadmin',
-                short: true
+                fallback: `Hey <@${user}>, good luck`,
+                color: "good",
+                fields: [
+                  {
+                    title: 'IP Address',
+                    value: servers[text].ip,
+                    short: false
+                  },
+                  {
+                    title: 'User',
+                    value: servers[text].user,
+                    short: true
+                  },
+                  {
+                    title: 'Password',
+                    value: servers[text].password,
+                    short: true
+                  }
+                ]
               },
-              {
-                title: 'Password',
-                value: 'RainbowTrout330',
-                short: true
-              }
             ]
-          },
-        ]
+          });
+        }
+        else {
+          callback(null, {
+            response_type: 'ephemeral',
+            text: `I can't find any info on the *${text}* server`
+          })
+        }
       });
-    } else {
-      callback(null, {
-        response_type: 'ephemeral',
-        text: `Sorry <@${user}> I don't know about the ${text} sever`
-      });
-    }
+    });
   } else {
     callback(null, {
       response_type: 'ephemeral',
       text: `Sorry, this command is exclusive to the XMPie team.`
     });
   }
+
+  //function to parse server login data recieved from google sheets
+  function getServersInfo(data) {
+    result = {};
+    for (var i = 0; i < data.length; i++) {
+      //start with the fisrt cell of each row; "data[i].row > 1" ignores the first row which is just labels
+      if(data[i].col == 1 && data[i].row > 1) {
+        /*
+        * here we constrcuct a new object for each server
+        * looks something like this:
+        *
+        * serverName : {
+        *   ip: 192.168.168.168,
+        *   user: username,
+        *   password: password
+        * }
+        *
+        */
+        result[data[i].value] = {
+          ip : data[i+1] ? data[i+1].value : 'not provided',
+          user : data[i+2] ? data[i+2].value : 'not provided',
+          password : data[i+3] ? data[i+3].value : 'not provided'
+        }
+      }
+    }
+    return result;
+  };
 
 
 };
