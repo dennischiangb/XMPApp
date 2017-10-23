@@ -51,39 +51,48 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
 
     callback(null, {
       response_type: 'ephemeral',
-      "text": "Would you like to play a game?",
+      "text": "New comic book alert!",
       "attachments": [
           {
-              "text": "Choose a game to play",
-              "fallback": "You are unable to choose a game",
-              "callback_id": "chess.js",
+              "title": "The Further Adventures of Slackbot",
+              "fields": [
+                  {
+                      "title": "Volume",
+                      "value": "1",
+                      "short": true
+                  },
+                  {
+                      "title": "Issue",
+                      "value": "3",
+                      "short": true
+                  }
+              ],
+              "author_name": "Stanford S. Strickland",
+              "author_icon": "http://a.slack-edge.com/7f18/img/api/homepage_custom_integrations-2x.png",
+              "image_url": "http://i.imgur.com/OJkaVOI.jpg?1"
+          },
+          {
+              "title": "Synopsis",
+              "text": "After @episod pushed exciting changes to a devious new branch back in Issue 1, Slackbot notifies @don about an unexpected deploy..."
+          },
+          {
+              "fallback": "Would you recommend it to customers?",
+              "title": "Would you recommend it to customers?",
+              "callback_id": "comic_1234_xyz",
               "color": "#3AA3E3",
               "attachment_type": "default",
               "actions": [
                   {
-                      "name": "chess",
-                      "text": "damn",
+                      "name": "recommend",
+                      "text": "Recommend",
                       "type": "button",
-                      "value": "google.com"
+                      "value": "recommend"
                   },
                   {
-                      "name": "game",
-                      "text": "Falken's Maze",
+                      "name": "no",
+                      "text": "No",
                       "type": "button",
-                      "value": "maze"
-                  },
-                  {
-                      "name": "game",
-                      "text": "Thermonuclear War",
-                      "style": "danger",
-                      "type": "button",
-                      "value": "war",
-                      "confirm": {
-                          "title": "Are you sure?",
-                          "text": "Wouldn't you prefer a good game of chess?",
-                          "ok_text": "Yes",
-                          "dismiss_text": "No"
-                      }
+                      "value": "bad"
                   }
               ]
           }
