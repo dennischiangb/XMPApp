@@ -49,8 +49,8 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         if(cases.length > 0) {
           casesText = "Here are the cases for the month of "+`*${text}*\n`
 
-          cases.forEach(function(case){
-            casesText += case.number + " " + case.link + " *Owner:* " + case.owner + " *Status:* " +case.status + "\n";
+          cases.forEach(function(cases){
+            casesText += cases.number + " " + cases.link + " *Owner:* " + cases.owner + " *Status:* " +cases.status + "\n";
           });
 
           callback(null, {
