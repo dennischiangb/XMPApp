@@ -46,41 +46,14 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         if(servers[text]) {
           callback(null, {
             response_type: 'ephemeral',
-            text: `Hey <@${user}> here are the Salesforce cases for the month of *${text}*:`,
-            attachments: [
-              {
-                fallback: `Hey <@${user}>, good luck`,
-                color: "good",
-                fields: [
-                  {
-                    title: 'Case Number',
-                    value: servers[text].number,
-                    short: false
-                  },
-                  {
-                    title: 'Case Link',
-                    value: servers[text].link,
-                    short: true
-                  },
-                  {
-                    title: 'Case Owner',
-                    value: servers[text].owner,
-                    short: true
-                  },
-                  {
-                    title: 'Case Status',
-                    value: servers[text].status,
-                    short: true
-                  }
-                ]
-              },
-            ]
+            text:"Here are the cases for the month of "+`*${text}*\n`+
+            '- '+servers[text].number+" *Owner:* "+servers[text].owner+" *Status:* "+servers[text].status+" "+servers[text].link,
           });
         }
         else {
           callback(null, {
             response_type: 'ephemeral',
-            text: `I can't find any info on the *${text}* server`
+            text: `I can't find any info for *${text}*`
           })
         }
       });
