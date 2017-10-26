@@ -42,18 +42,26 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       // Get all of the cells from the spreadsheet.
       doc.getCells(2, function (err, cells) {
         //parse the info; see function definition for more
-        servers = getServersInfo(cells);
-        if(servers[text]) {
+
+
+        cases = getCasesInfo(cells, text);
+
+        if(cases.length > 0) {
+          casesText = "Here are the cases for the month of "+`*${text}*\n`
+
+          cases.forEach(function(case){
+            casesText += case.number + " " + case.link + " *Owner:* " + case.owner + " *Status:* " +case.status + "\n";
+          });
+
           callback(null, {
             response_type: 'ephemeral',
-            text:"Here are the cases for the month of "+`*${text}*\n`+
-            '- '+servers[text].number+" *Owner:* "+servers[text].owner+" *Status:* "+servers[text].status+" "+servers[text].link,
+            text: casesText
           });
         }
         else {
           callback(null, {
             response_type: 'ephemeral',
-            text: `I can't find any info for *${text}*`
+            text: `I can't find any cases for the month of *${text}*`
           })
         }
       });
@@ -66,11 +74,11 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
   }
 
   //function to parse server login data recieved from google sheets
-  function getServersInfo(data) {
-    result = {};
+  function getCasesInfo(data, month) {
+    result = [];
     for (var i = 0; i < data.length; i++) {
       //start with the fisrt cell of each row; "data[i].row > 1" ignores the first row which is just labels
-      if(data[i].col == 1 && data[i].row > 1) {
+      if(data[i].col == 1 && data[i].row > 1 && data[i].value == month) {
         /*
         * here we constrcuct a new object for each server
         * looks something like this:
@@ -82,12 +90,13 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         * }
         *
         */
-        result[data[i].value] = {
+
+        result.push({
           number : data[i+1] ? data[i+1].value : 'not provided',
           link : data[i+2] ? data[i+2].value : 'not provided',
           owner : data[i+3] ? data[i+3].value : 'not provided',
           status : data[i+4] ? data[i+4].value : 'not provided'
-        }
+        })
       }
     }
     return result;
