@@ -52,14 +52,18 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
 
           commands.forEach(function(commands){
             commandsText += `Command: *${commands.command}*`
-            +"    Explanation:"+` *${commands.explanation}*`; 
-          });
-          for(i=0; i<commands.length; i++){
+            +"    Explanation:"+` *${commands.explanation}*`;
             commandList.push({
               value: `*${commandsText}*`,
               short: true
-            })
-      } 
+            }) 
+          });
+      //     for(i=0; i<commands.length; i++){
+      //       commandList.push({
+      //         value: `*${commandsText}*`,
+      //         short: true
+      //       })
+      // } 
 
           callback(null, {
             response_type: 'ephemeral',
