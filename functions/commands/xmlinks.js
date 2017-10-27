@@ -52,28 +52,26 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       "attachments": [
         {
             "fallback": "ReferenceError - UI is not defined: https://honeybadger.io/path/to/event/",
-            "text": "I got you, fam",
-            "footer": "XMPie",
-            "ts": Date.now()/1000|0,
-            "footer_icon": "https://i.imgur.com/SaV1D9j.png",
+            "pretext": "*Useful links:*",
+            //"footer": "XMPie",
+            //"ts": Date.now()/1000|0,
+            //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
+            "mrkdwn_in":["fields","pretext"],
             "fields": [
                 {
-                    "title": "XMPie Support (Trello)",
-                    "value": "https://trello.com/b/VNOC5stG/xmpie-support",
+                    "value": `*<https://trello.com/b/VNOC5stG/xmpie-support|XMPie Support (Trello)>*`,
+                    "short": true,
+                },
+                {
+                    "value": "*<https://trello.com/b/GDeLCYTO/salesforce-cases|Salesforce Cases (Trello)>*",
                     "short": true
                 },
                 {
-                    "title": "Salesforce Cases (Trello)",
-                    "value": "https://trello.com/b/GDeLCYTO/salesforce-cases",
-                    "short": true
-                },
-                {
-                    "title": "VIP Support Queue (Salesforce)",
-                    "value": "https://na29.salesforce.com/500?fcf=00B80000005gb7H",
+                    "value": "*<https://na29.salesforce.com/500?fcf=00B80000005gb7H|VIP Support Queue (Salesforce)>*",
                     "short": true
                 }
             ],
-            "color": "#32CD32"
+            "color": "good"
         }
     ]});
   }else{

@@ -50,7 +50,8 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           commandsText = "Here are all of our commands:\n"
 
           commands.forEach(function(commands){
-            commandsText += `• Command: *${commands.command}*\n`;
+            commandsText += `• Command: *${commands.command}*\n`
+            +"    Explanation:"+` *${commands.explanation}*\n`;
           });
 
           callback(null, {
