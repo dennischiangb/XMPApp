@@ -50,14 +50,52 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           commandsText = "Here are all of our commands:\n"
 
           commands.forEach(function(commands){
-            commandsText += `• Command: *${commands.command}*\n`
-            +"    Explanation:"+` *${commands.explanation}*\n`;
+            commandsText += `Command: *${commands.command}*`
+            +"    Explanation:"+` *${commands.explanation}*`;
+            callback(null, {
+              response_type: 'ephemeral',
+              //text: commandsText
+              "attachments": [
+                {
+                    "fallback": "What?",
+                    "pretext": "*Useful links:*",
+                    //"footer": "XMPie",
+                    //"ts": Date.now()/1000|0,
+                    //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
+                    "mrkdwn_in":["fields","pretext"],
+                    "fields": [
+                        {
+                            "value": `${commandsText}`,
+                            "short": true,
+                        }
+                    ],
+                    "color": "good"
+                }
+            ]
+          });
           });
 
-          callback(null, {
-            response_type: 'ephemeral',
-            text: commandsText
-          });
+        //   callback(null, {
+        //     response_type: 'ephemeral',
+        //     //text: commandsText
+        //     "attachments": [
+        //       {
+        //           "fallback": "What?",
+        //           "pretext": "*Useful links:*",
+        //           //"footer": "XMPie",
+        //           //"ts": Date.now()/1000|0,
+        //           //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
+        //           "mrkdwn_in":["fields","pretext"],
+        //           "fields": [
+        //               {
+        //                   "value": `${commandsText}`,
+        //                   "short": true,
+        //               }
+        //           ],
+        //           "color": "good"
+        //       }
+        //   ]
+        // });
         }    
       });
     });

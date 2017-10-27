@@ -51,7 +51,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       response_type: 'ephemeral',
       "attachments": [
         {
-            "fallback": "ReferenceError - UI is not defined: https://honeybadger.io/path/to/event/",
+            "fallback": "What?",
             "pretext": "*Useful links:*",
             //"footer": "XMPie",
             //"ts": Date.now()/1000|0,
