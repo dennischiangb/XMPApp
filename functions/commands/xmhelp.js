@@ -45,59 +45,38 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
 
 
         commands = getCommandsInfo(cells, text);
+        commandList = [];
 
         if(commands.length > 0) {
           commandsText = "Here are all of our commands:\n"
 
           commands.forEach(function(commands){
             commandsText += `Command: *${commands.command}*`
-            +"    Explanation:"+` *${commands.explanation}*`;
-            commandList = [];
-            for(i=0; i<commandList.length; i++){
-                  commandList.push({
-                    value: `${commandsText}`,
-                    short: true
-                  })
-            }  
-            callback(null, {
-              response_type: 'ephemeral',
-              //text: commandsText
-              "attachments": [
-                {
-                    "fallback": "What?",
-                    "pretext": "*Useful links:*",
-                    //"footer": "XMPie",
-                    //"ts": Date.now()/1000|0,
-                    //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
-                    "mrkdwn_in":["fields","pretext"],
-                    "fields": commandList.value,
-                    "color": "good"
-                }
-            ]
+            +"    Explanation:"+` *${commands.explanation}*`; 
           });
-          });
+          for(i=0; i<commands.length; i++){
+            commandList.push({
+              value: `*${commandsText}*`,
+              short: true
+            })
+      } 
 
-        //   callback(null, {
-        //     response_type: 'ephemeral',
-        //     //text: commandsText
-        //     "attachments": [
-        //       {
-        //           "fallback": "What?",
-        //           "pretext": "*Useful links:*",
-        //           //"footer": "XMPie",
-        //           //"ts": Date.now()/1000|0,
-        //           //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
-        //           "mrkdwn_in":["fields","pretext"],
-        //           "fields": [
-        //               {
-        //                   "value": `${commandsText}`,
-        //                   "short": true,
-        //               }
-        //           ],
-        //           "color": "good"
-        //       }
-        //   ]
-        // });
+          callback(null, {
+            response_type: 'ephemeral',
+            //text: commandsText
+            "attachments": [
+              {
+                  "fallback": "What?",
+                  "pretext": "*Useful links:*",
+                  //"footer": "XMPie",
+                  //"ts": Date.now()/1000|0,
+                  //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
+                  "mrkdwn_in":["fields","pretext"],
+                  "fields": commandList,
+                  "color": "good"
+              }
+          ]
+        });
         }    
       });
     });
