@@ -44,18 +44,18 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         //parse the info; see function definition for more
 
 
-        cases = getCasesInfo(cells, text);
+        commands = getCommandsInfo(cells, text);
 
-        if(cases.length > 0) {
-          casesText = "Here are all of our commands:\n"
+        if(commands.length > 0) {
+          commandsText = "Here are all of our commands:\n"
 
-          cases.forEach(function(cases){
-            casesText += `• Command: *${cases.command}*\n`;
+          commands.forEach(function(commands){
+            commandsText += `• Command: *${commands.command}*\n`;
           });
 
           callback(null, {
             response_type: 'ephemeral',
-            text: casesText
+            text: commandsText
           });
         }    
       });
@@ -68,7 +68,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
   }
 
   //function to parse server login data recieved from google sheets
-  function getCasesInfo(data) {
+  function getCommandsInfo(data) {
     result = [];
     for (var i = 0; i < data.length; i++) {
       //start with the fisrt cell of each row; "data[i].row > 1" ignores the first row which is just labels
