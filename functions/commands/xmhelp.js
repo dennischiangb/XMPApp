@@ -48,22 +48,13 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         commandList = [];
 
         if(commands.length > 0) {
-          commandsText = "Here are all of our commands:\n"
-
           commands.forEach(function(commands){
-            commandsText += `Command: *${commands.command}*`
-            +"    Explanation:"+` *${commands.explanation}*`;
             commandList.push({
-              value: `*${commandsText}*`,
+              title: commands.command,
+              value: commands.explanation,
               short: true
             }) 
           });
-      //     for(i=0; i<commands.length; i++){
-      //       commandList.push({
-      //         value: `*${commandsText}*`,
-      //         short: true
-      //       })
-      // } 
 
           callback(null, {
             response_type: 'ephemeral',
@@ -71,7 +62,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
             "attachments": [
               {
                   "fallback": "What?",
-                  "pretext": "*Useful links:*",
+                  "pretext": "*Here are all of our commands:*",
                   //"footer": "XMPie",
                   //"ts": Date.now()/1000|0,
                   //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
