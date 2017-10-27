@@ -52,6 +52,13 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           commands.forEach(function(commands){
             commandsText += `Command: *${commands.command}*`
             +"    Explanation:"+` *${commands.explanation}*`;
+            commandList = [];
+            for(i=0; i<commandList.length; i++){
+                  commandList.push({
+                    value: `${commandsText}`,
+                    short: true
+                  })
+            }  
             callback(null, {
               response_type: 'ephemeral',
               //text: commandsText
@@ -63,12 +70,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                     //"ts": Date.now()/1000|0,
                     //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
                     "mrkdwn_in":["fields","pretext"],
-                    "fields": [
-                        {
-                            "value": `${commandsText}`,
-                            "short": true,
-                        }
-                    ],
+                    "fields": commandList.value,
                     "color": "good"
                 }
             ]
