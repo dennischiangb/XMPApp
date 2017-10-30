@@ -48,22 +48,20 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         casesList = [];
 
         if(cases.length > 0) {
-          // casesText = "Here are the cases for the month of "+`*${text}*\n`
-          cases.forEach(function(commands){
+          cases.forEach(function(cases){
             casesList.push({
-              title: cases.number,
-              value: cases.link,
+              //title: `${cases.description}`,
+              value: `*<${cases.link}|${cases.number}>* - *${cases.description}* Owner: ${cases.owner} Status: ${cases.status}`,
               short: true
             }) 
           });
 
           callback(null, {
             response_type: 'ephemeral',
-            //text: commandsText
             "attachments": [
               {
                   "fallback": "What?",
-                  "pretext": `*Here are the cases for the month of ${text}:*`,
+                  "pretext": `Here are the cases for the month of *${text}*:`,
                   //"footer": "XMPie",
                   //"ts": Date.now()/1000|0,
                   //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
