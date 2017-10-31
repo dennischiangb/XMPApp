@@ -51,7 +51,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           cases.forEach(function(cases){
             casesList.push({
               //title: `${cases.description}`,
-              value: `*<${cases.link}|${cases.number}>* - *${cases.description}* Owner: ${cases.owner} Status: ${cases.status}`,
+              value: `*<${cases.link}|${cases.number}> (${cases.date})* - *${cases.description}* Owner: ${cases.owner} Status: ${cases.status}`,
               short: true
             }) 
           });
@@ -110,7 +110,8 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           link : data[i+2] ? data[i+2].value : 'not provided',
           owner : data[i+3] ? data[i+3].value : 'not provided',
           status : data[i+4] ? data[i+4].value : 'not provided',
-          description : data[i+5] ? data[i+5].value : 'not provided'
+          description : data[i+5] ? data[i+5].value : 'not provided',
+          date: data[i+6] ? data [i+6].value : 'not provided'
         })
       }
     }
