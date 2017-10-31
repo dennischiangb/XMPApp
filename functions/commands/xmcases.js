@@ -62,9 +62,9 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
               {
                   "fallback": "What?",
                   "pretext": `Here are the cases for the month of *${text}*:`,
-                  //"footer": "XMPie",
+                  "footer": "XMPie",
                   //"ts": Date.now()/1000|0,
-                  //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
+                  "footer_icon": "https://i.imgur.com/SaV1D9j.png",
                   "mrkdwn_in":["fields","pretext"],
                   "fields": casesList,
                   "color": "good"
