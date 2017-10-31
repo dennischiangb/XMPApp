@@ -2,8 +2,6 @@ const lib = require('lib')({token: process.env.STDLIB_TOKEN});
 
 const GoogleSpreadsheet = require('google-spreadsheet');
 const creds = require('../../sheetsAPI/client_secret.json');
-const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
-const names = ['alejandro', 'roger', 'amec', 'dennis', 'rodrigo', 'emily', 'rebecca', 'carlos'];
 const team = {
   dennis: 'U0545PDQ3',
   rodrigo: 'U0DU10LAU',
@@ -32,32 +30,30 @@ const team = {
 module.exports = (user, channel, text = '', command = {}, botToken = null, callback) => {
 
   if(Object.values(team).indexOf(user) > -1){
-  // if(true){
 
-    var params = text.toLowerCase().split(" ");
-    var d = new Date();
+    text = text.toLowerCase();
 
     //using Google Sheets API to fetch data from spreadsheet
     // Create a document object using the ID of the spreadsheet - obtained from its URL.
     var doc = new GoogleSpreadsheet('1TORc-LBrt3_oe3mK3j-arickBm01UcqZHhoDBdqo3SU');
-    doc.useServiceAccountAuth(creds, function (err) {
-      doc.getCells(2, function (err, cells) {
 
-        cases = getCasesInfo(cells, params.find(isMonth));
+    // Authenticate with the Google Spreadsheets API.
+    doc.useServiceAccountAuth(creds, function (err) {
+      // Get all of the cells from the spreadsheet.
+      doc.getCells(2, function (err, cells) {
+        //parse the info; see function definition for more
+
+
+        cases = getCasesInfo(cells, text);
         casesList = [];
 
-        monthString = params.find(isMonth)? params.find(isMonth) : 'this month';
-        ownerString = params.find(isSomeone)? params.find(isSomeone) : false;
-
         if(cases.length > 0) {
-
           cases.forEach(function(cases){
-            if(!ownerString || ownerString == cases.owner.toLowerCase()){
-              casesList.push({
-                value: `*<${cases.link}|${cases.number}> (${cases.date})* - *${cases.description}* Owner: ${cases.owner} Status: ${cases.status}`,
-                short: true
-              });
-            }
+            casesList.push({
+              //title: `${cases.description}`,
+              value: `*<${cases.link}|${cases.number}> (${cases.date})* - *${cases.description}* Owner: ${cases.owner} Status: ${cases.status}`,
+              short: true
+            }) 
           });
 
           callback(null, {
@@ -65,20 +61,21 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
             "attachments": [
               {
                   "fallback": "What?",
-                  "pretext": `Here are ${ownerString? '*' + ownerString.charAt(0).toUpperCase() + ownerString.slice(1) + '*\'s' : 'the'  } cases for *${ monthString }*:`,
-                  "mrkdwn_in":["fields","pretext"],
+                  "pretext": `Here are the cases for the month of *${text}*:`,
                   "footer": "XMPie",
+                  //"ts": Date.now()/1000|0,
                   "footer_icon": "https://i.imgur.com/SaV1D9j.png",
+                  "mrkdwn_in":["fields","pretext"],
                   "fields": casesList,
                   "color": "good"
               }
-            ]
-          });
+          ]
+        });
         }
         else {
           callback(null, {
             response_type: 'ephemeral',
-            text: `I can't find any cases that match.`
+            text: `I can't find any cases for the month of *${text}*`
           })
         }
       });
@@ -92,10 +89,22 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
 
   //function to parse server login data recieved from google sheets
   function getCasesInfo(data, month) {
-    month = month ? month : months[d.getMonth()]
     result = [];
     for (var i = 0; i < data.length; i++) {
+      //start with the fisrt cell of each row; "data[i].row > 1" ignores the first row which is just labels
       if(data[i].col == 1 && data[i].row > 1 && data[i].value == month) {
+        /*
+        * here we constrcuct a new object for each server
+        * looks something like this:
+        *
+        * serverName : {
+        *   ip: 192.168.168.168,
+        *   user: username,
+        *   password: password
+        * }
+        *
+        */
+
         result.push({
           number : data[i+1] ? data[i+1].value : 'not provided',
           link : data[i+2] ? data[i+2].value : 'not provided',
@@ -103,26 +112,11 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           status : data[i+4] ? data[i+4].value : 'not provided',
           description : data[i+5] ? data[i+5].value : 'not provided',
           date: data[i+6] ? data [i+6].value : 'not provided'
-        });
+        })
       }
     }
     return result;
   };
 
-  function isMonth(someText) {
-    someText = someText.toLowerCase();
-    if(months.includes(someText)){
-      return true;
-    } else
-      return false;
-  }
-
-  function isSomeone(someText) {
-    someText = someText.toLowerCase();
-    if(names.includes(someText)){
-      return true;
-    } else
-    return false;
-  }
 
 };
