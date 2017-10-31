@@ -65,10 +65,6 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                 {
                     "value": "*<https://trello.com/b/GDeLCYTO/salesforce-cases|Salesforce Cases (Trello)>*",
                     "short": true
-                },
-                {
-                    "value": "*<https://na29.salesforce.com/500?fcf=00B80000005gb7H|VIP Support Queue (Salesforce)>*",
-                    "short": true
                 }
             ],
             "color": "good"
