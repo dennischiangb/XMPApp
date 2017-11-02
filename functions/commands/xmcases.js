@@ -54,7 +54,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           cases.forEach(function(cases){
             if(!ownerString || ownerString == cases.owner.toLowerCase()){
               casesList.push({
-                value: `*<${cases.link}|${cases.number}> (${cases.date})* - *${cases.description}* Owner: ${cases.owner} Status: ${cases.status}`,
+                value: `*<${cases.link}|${cases.number}> (${cases.date})* - *${cases.description}* Owner: ${cases.owner} Status: ${cases.status}` + ` <${cases.discussion}|Discussion>`,
                 short: true
               });
             }
@@ -102,7 +102,8 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           owner : data[i+3] ? data[i+3].value : 'not provided',
           status : data[i+4] ? data[i+4].value : 'not provided',
           description : data[i+5] ? data[i+5].value : 'not provided',
-          date: data[i+6] ? data [i+6].value : 'not provided'
+          date: data[i+6] ? data[i+6].value : 'not provided',
+          discussion: data[i+7] ? data[i+7] : `not provided`
         });
       }
     }
