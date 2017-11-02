@@ -103,7 +103,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           status : data[i+4] ? data[i+4].value : 'not provided',
           description : data[i+5] ? data[i+5].value : 'not provided',
           date: data[i+6] ? data[i+6].value : 'not provided',
-          discussion: data[i+7] ? data[i+7] : `not provided`
+          discussion: data[i+7] ? data[i+7].value : `not provided`
         });
       }
     }
