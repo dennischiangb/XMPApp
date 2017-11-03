@@ -54,7 +54,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
           cases.forEach(function(cases){
             if(!ownerString || ownerString == cases.owner.toLowerCase()){
               casesList.push({
-                value: `*<${cases.link}|${cases.number}> (${cases.date})* - *${cases.description}* Owner: ${cases.owner} Status: ${cases.status}` + ` <${cases.discussion}|Discussion>`,
+                value: `*<${cases.link}|${cases.number}> (${cases.date})* - *${cases.description}* Owner: ${cases.owner} *Status: ${cases.status}* *<${cases.discussion}|Discussion>*`,
                 short: true
               });
             }
@@ -86,7 +86,17 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
   } else {
     callback(null, {
       response_type: 'ephemeral',
-      text: `Sorry, this command is exclusive to the XMPie team.`
+      "attachments": [
+        {
+            "fallback": "Warning?",
+            "text": "Sorry, this command is exclusive to the XMPie team.",
+            "footer": "XMPie",
+            "ts": Date.now()/1000|0,
+            "footer_icon": "https://i.imgur.com/SaV1D9j.png",
+            "mrkdwn_in":["pretext"],
+            "color": "warning"
+        }
+    ]
     });
   }
 

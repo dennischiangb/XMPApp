@@ -31,8 +31,6 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
 
   if(Object.values(team).indexOf(user) > -1){
 
-    text = text.toLowerCase();
-
     //using Google Sheets API to fetch data from spreadsheet
     // Create a document object using the ID of the spreadsheet - obtained from its URL.
     var doc = new GoogleSpreadsheet('1TORc-LBrt3_oe3mK3j-arickBm01UcqZHhoDBdqo3SU');
@@ -44,7 +42,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         //parse the info; see function definition for more
 
 
-        commands = getCommandsInfo(cells, text);
+        commands = getCommandsInfo(cells);
         commandList = [];
 
         if(commands.length > 0) {
@@ -58,14 +56,13 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
 
           callback(null, {
             response_type: 'ephemeral',
-            //text: commandsText
             "attachments": [
               {
                   "fallback": "What?",
                   "pretext": "*Here are all of our commands:*",
-                  //"footer": "XMPie",
-                  //"ts": Date.now()/1000|0,
-                  //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
+                  "footer": "XMPie",
+                  "ts": Date.now()/1000|0,
+                  "footer_icon": "https://i.imgur.com/SaV1D9j.png",
                   "mrkdwn_in":["fields","pretext"],
                   "fields": commandList,
                   "color": "good"
@@ -78,7 +75,17 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
   } else {
     callback(null, {
       response_type: 'ephemeral',
-      text: `Sorry, this command is exclusive to the XMPie team.`
+      "attachments": [
+        {
+            "fallback": "Warning?",
+            "text": "Sorry, this command is exclusive to the XMPie team.",
+            "footer": "XMPie",
+            "ts": Date.now()/1000|0,
+            "footer_icon": "https://i.imgur.com/SaV1D9j.png",
+            "mrkdwn_in":["pretext"],
+            "color": "warning"
+        }
+    ]
     });
   }
 

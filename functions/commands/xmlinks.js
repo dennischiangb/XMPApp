@@ -53,9 +53,9 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         {
             "fallback": "What?",
             "pretext": "*Useful links:*",
-            //"footer": "XMPie",
-            //"ts": Date.now()/1000|0,
-            //"footer_icon": "https://i.imgur.com/SaV1D9j.png",
+            "footer": "XMPie",
+            "ts": Date.now()/1000|0,
+            "footer_icon": "https://i.imgur.com/SaV1D9j.png",
             "mrkdwn_in":["fields","pretext"],
             "fields": [
                 {
@@ -63,17 +63,40 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                     "short": true,
                 },
                 {
-                    "value": "*<https://trello.com/b/GDeLCYTO/salesforce-cases|Salesforce Cases (Trello)>*",
-                    "short": true
-                }
+                  "value": "*<http://jira:8080/projects/BUG/summary|Jira (Bug Tracker)>* \nU: JViewer \nPW: JViewer",
+                  "short": true
+                },
+                {
+                  "value": "*<http://campus.xmpie.com/login.aspx?ReturnUrl=%2fdefault.aspx|XMPie Campus>* \nU: dennis@partnerhero.com \nPW: 0^-D]{f",
+                  "short": true
+                },
+                {
+                  "value": "*<http://help.xmpie.com/|XMPie Online Help>*",
+                  "short": true
+                },  
+                {
+                  "value": "*<https://na29.salesforce.com/_ui/knowledge/ui/KnowledgeHome/|Salesforce Knowledge Base>*",
+                  "short": true
+                },       
             ],
             "color": "good"
         }
-    ]});
+    ]
+  });
   }else{
     callback(null, {
       response_type: 'ephemeral',
-      text: `Sorry, this command is unsupported in this channel.`
+      "attachments": [
+        {
+            "fallback": "Warning?",
+            "text": "Sorry, this command is exclusive to the XMPie team.",
+            "footer": "XMPie",
+            "ts": Date.now()/1000|0,
+            "footer_icon": "https://i.imgur.com/SaV1D9j.png",
+            "mrkdwn_in":["pretext"],
+            "color": "warning"
+        }
+    ]
     });
   }
 
