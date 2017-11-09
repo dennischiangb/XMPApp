@@ -77,6 +77,10 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
                 {
                   "value": "*<https://na29.salesforce.com/_ui/knowledge/ui/KnowledgeHome/|Salesforce Knowledge Base>*",
                   "short": true
+                },
+                {
+                  "value": "*<https://keys.xmpie.com/XMPieLicensing|License Status>* \nU: short username (e.g. dennisc) \nPW: xmpie domain pw",
+                  "short": true
                 },       
             ],
             "color": "good"
