@@ -89,7 +89,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       "attachments": [
         {
             "fallback": "Warning?",
-            "text": "Sorry, this command is exclusive to the XMPie team.",
+            "text": "Sorry, you can't use this command.",
             "footer": "XMPie",
             "ts": Date.now()/1000|0,
             "footer_icon": "https://i.imgur.com/SaV1D9j.png",
