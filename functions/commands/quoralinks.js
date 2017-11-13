@@ -4,11 +4,10 @@ const GoogleSpreadsheet = require('google-spreadsheet');
 const creds = require('../../sheetsAPI/client_secret.json');
 const team = {
   dennis: 'U0545PDQ3',
-  rodrigo: 'U0DU10LAU',
-  roger: 'U75RRPETH',
-  alejandro: 'U0408Q8R0',
-  amec: 'U707X17U3',
-  emily: 'U6XAQ854Y'
+  amy: 'U03VA5G1P',
+  alexandra: 'U1GBRM7R6',
+  giselle: 'U1GBX7LP9',
+  daniel: 'U0406G5U5',
 };
 
 /**
@@ -38,7 +37,7 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
     // Authenticate with the Google Spreadsheets API.
     doc.useServiceAccountAuth(creds, function (err) {
       // Get all of the cells from the spreadsheet.
-      doc.getCells(3, function (err, cells) {
+      doc.getCells(5, function (err, cells) {
         //parse the info; see function definition for more
 
 
@@ -47,9 +46,9 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
 
         if(queues.length > 0) {
           queues.forEach(function(queues){
-            commandList.push({
-              title: queues.queue,
-              value: queues.dashboard,
+            queueList.push({
+              //title: queues.queue,
+              value: `<${queues.dashboard}|${queues.urlname}>`,
               short: true
             }) 
           });
@@ -60,9 +59,9 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
               {
                   "fallback": "What?",
                   "pretext": "*Here are all of our queues:*",
-                  "footer": "XMPie",
+                  "footer": "Quora",
                   "ts": Date.now()/1000|0,
-                  "footer_icon": "https://i.imgur.com/SaV1D9j.png",
+                  "footer_icon": "https://www.underconsideration.com/brandnew/archives/quora_icon.png",
                   "mrkdwn_in":["fields","pretext"],
                   "fields": queueList,
                   "color": "good"
@@ -78,10 +77,10 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
       "attachments": [
         {
             "fallback": "Warning?",
-            "text": "Sorry, this command is exclusive to the XMPie team.",
-            "footer": "XMPie",
+            "text": "Sorry, you can't use this command.",
+            "footer": "Quora",
             "ts": Date.now()/1000|0,
-            "footer_icon": "https://i.imgur.com/SaV1D9j.png",
+            "footer_icon": "https://www.underconsideration.com/brandnew/archives/quora_icon.png",
             "mrkdwn_in":["pretext"],
             "color": "warning"
         }
@@ -108,8 +107,9 @@ module.exports = (user, channel, text = '', command = {}, botToken = null, callb
         */
 
         result.push({
-          queue : data[i] ? data[i].value : 'not provided',
-          dashboard : data[i+1] ? data[i+1].value : 'not provided'
+          urlname: data[i] ? data[i].value: 'not provided',
+          queue : data[i+1] ? data[i+1].value : 'not provided',
+          dashboard : data[i+2] ? data[i+2].value : 'not provided'
         })
       }
     }
